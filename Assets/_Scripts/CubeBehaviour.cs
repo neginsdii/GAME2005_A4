@@ -41,6 +41,8 @@ public class CubeBehaviour : MonoBehaviour
         {
             acceleration += (gravity + acceleration) * Time.deltaTime*1/10;
             velocity = speed * direction + acceleration;
+            if(contacts.Count >0)
+            { velocity.Set(0.0f, 0.0f, 0.0f); }
             transform.position += velocity * Time.deltaTime;
         }
         max = Vector3.Scale(bounds.max, transform.localScale) + transform.position;
