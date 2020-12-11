@@ -6,32 +6,31 @@ using Color = UnityEngine.Color;
 [System.Serializable]
 public class SphereBehavior : MonoBehaviour
 {
-	public MeshFilter meshFilter;
-	public Bounds bounds;
+	public float speed;
+	public Vector3 direction;
+	public float mass;
 	public Vector3 size;
-	public Vector3 center;
+	public Transform can;
 	public bool isColliding;
 
 	public List<CubeBehaviour> contacts;
 	// Start is called before the first frame update
 	void Start()
 	{
-		meshFilter = GetComponent<MeshFilter>();
-		bounds = meshFilter.mesh.bounds;
-		size = bounds.size;
-		center = bounds.center;
+
+		direction = can.up;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		center = bounds.center;
+		transform.position += speed * direction * Time.deltaTime;
 	}
 
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.magenta;
-
+		//Debug.Log("size"+ size.x / 2);
 		Gizmos.DrawWireSphere(transform.position, size.x/2);
 	}
 }

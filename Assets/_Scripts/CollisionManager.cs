@@ -80,7 +80,7 @@ public class CollisionManager : MonoBehaviour
         var distance = Mathf.Sqrt((x - a.transform.position.x) * (x - a.transform.position.x) +
                                   (y - a.transform.position.y) * (y - a.transform.position.y) +
                                   (z - a.transform.position.z) * (x - a.transform.position.z));
-            Debug.Log("Collider Center : "+a.transform.position.x);
+            Debug.Log("scale : "+ a.transform.localScale);
         if(distance<a.size.x/2)
 		{
             if (!a.contacts.Contains(b))
@@ -107,7 +107,7 @@ public class CollisionManager : MonoBehaviour
         var distance = Mathf.Sqrt((x - a.transform.position.x) * (x - a.transform.position.x) +
                                   (y - a.transform.position.y) * (y - a.transform.position.y) +
                                   (z - a.transform.position.z) * (x - a.transform.position.z));
-        Debug.Log("Collider Center : " + a.transform.position.x);
+      //  Debug.Log("Collider Center : " + a.transform.position.x);
         if (distance < a.size.x / 2)
         {
             if (!b.sp_contacts.Contains(a))
