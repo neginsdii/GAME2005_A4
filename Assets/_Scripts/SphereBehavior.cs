@@ -12,19 +12,25 @@ public class SphereBehavior : MonoBehaviour
 	public Vector3 size;
 	public Transform can;
 	public bool isColliding;
+	public Vector3 gravity;
+	public Vector3 velocity;
 
+	private Vector3 acceleration; 
 	public List<CubeBehaviour> contacts;
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		acceleration.Set(0.0f, 0.0f, 0.0f);
+		velocity.Set(0.0f, 0.0f, 0.0f);
 		direction = can.up;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		transform.position += speed * direction * Time.deltaTime;
+		acceleration += (gravity + acceleration) * Time.deltaTime;
+		velocity = speed * direction + acceleration;
+		transform.position += velocity * Time.deltaTime;
 	}
 
 	private void OnDrawGizmos()
