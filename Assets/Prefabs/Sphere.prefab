@@ -94,10 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448b88d6c8d099448bb539002675d0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   direction: {x: 0, y: 0, z: 0}
   mass: 8
   size: {x: 0.2, y: 0.2, z: 0.2}
   can: {fileID: 0}
   isColliding: 0
+  gravity: {x: 0, y: -9.8, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
   contacts: []

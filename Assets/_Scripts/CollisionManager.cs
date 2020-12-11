@@ -11,12 +11,13 @@ public class CollisionManager : MonoBehaviour
     void Start()
     {
         actors = FindObjectsOfType<CubeBehaviour>();
-        sp_actors= FindObjectsOfType<SphereBehavior>();
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
+        sp_actors = FindObjectsOfType<SphereBehavior>();
         for (int i = 0; i < actors.Length; i++)
         {
             for (int j = 0; j < actors.Length; j++)
@@ -46,6 +47,7 @@ public class CollisionManager : MonoBehaviour
 
             }
         }
+        sp_actors = null;
     }
 
     public static void CheckAABBs(CubeBehaviour a, CubeBehaviour b)
@@ -80,13 +82,14 @@ public class CollisionManager : MonoBehaviour
         var distance = Mathf.Sqrt((x - a.transform.position.x) * (x - a.transform.position.x) +
                                   (y - a.transform.position.y) * (y - a.transform.position.y) +
                                   (z - a.transform.position.z) * (x - a.transform.position.z));
-            Debug.Log("scale : "+ a.transform.localScale);
+
         if(distance<a.size.x/2)
 		{
             if (!a.contacts.Contains(b))
             {
                 a.contacts.Add(b);
                 a.isColliding = true;
+                Debug.Log("collision ");
             }
         }
         else
