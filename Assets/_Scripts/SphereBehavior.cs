@@ -31,7 +31,7 @@ public class SphereBehavior : MonoBehaviour
 	void Update()
 	{
 		
-		acceleration += (gravity + acceleration) * Time.deltaTime;
+		acceleration += (gravity + acceleration) * Time.deltaTime*1/5;
 		velocity = speed * direction + acceleration;
 		transform.position += velocity * Time.deltaTime;
 	   _BackToPool();
