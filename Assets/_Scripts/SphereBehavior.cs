@@ -17,6 +17,7 @@ public class SphereBehavior : MonoBehaviour
 	private float startTime;
 	private Vector3 acceleration;
 
+	public List<SphereBehavior> sp_contacts;
 	public List<CubeBehaviour> contacts;
 	// Start is called before the first frame update
 	void Start()

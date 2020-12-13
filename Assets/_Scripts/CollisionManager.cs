@@ -47,6 +47,18 @@ public class CollisionManager : MonoBehaviour
 
             }
         }
+
+        for (int i = 0; i < sp_actors.Length; i++)
+        {
+            for (int j = 0; j < sp_actors.Length; j++)
+            {
+                if (i != j)
+                {
+                    CheckSphereSphere(sp_actors[i], sp_actors[j]);
+                }
+            }
+        }
+
         sp_actors = null;
     }
 
@@ -128,4 +140,30 @@ public class CollisionManager : MonoBehaviour
             }
         }
     }
+    public static void CheckSphereSphere(SphereBehavior a, SphereBehavior b)
+    {
+
+        var distance = Mathf.Sqrt((b.transform.position.x - a.transform.position.x) * (b.transform.position.x - a.transform.position.x) +
+                                  (b.transform.position.y - a.transform.position.y) * (b.transform.position.y - a.transform.position.y) +
+                                  (b.transform.position.z - a.transform.position.z) * (b.transform.position.z - a.transform.position.z));
+        //  Debug.Log("Collider Center : " + a.transform.position.x);
+        if (distance < (a.size.x / 2 + b.size.x / 2))
+        {
+            if (!a.sp_contacts.Contains(b))
+            {
+                a.sp_contacts.Add(b);
+                a.isColliding = true;
+            }
+        }
+        else
+        {
+            if (a.sp_contacts.Contains(b))
+            {
+                a.sp_contacts.Remove(b);
+                a.isColliding = false;
+            }
+
+        }
+    }
+
 }
