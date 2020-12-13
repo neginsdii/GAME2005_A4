@@ -14,24 +14,39 @@ public class SphereBehavior : MonoBehaviour
 	public bool isColliding;
 	public Vector3 gravity;
 	public Vector3 velocity;
+	public Vector3 relativeVelocity;
 	private float startTime;
 	private Vector3 acceleration;
-
+	public Vector3 collisionNormal;
+	public float coefficientOfRestitution;
+	public float collisionRestitution;
+	public float impulse;
 	public List<SphereBehavior> sp_contacts;
 	public List<CubeBehaviour> contacts;
 	// Start is called before the first frame update
 	void Start()
 	{
-
 		acceleration.Set(0.0f, 0.0f, 0.0f);
 		velocity.Set(0.0f, 0.0f, 0.0f);
+		relativeVelocity.Set(0.0f, 0.0f, 0.0f);
 		startTime = Time.time;
-
+		collisionNormal.Set(0.0f, 0.0f, 0.0f);
+		coefficientOfRestitution = 0.7f;
+		collisionRestitution = 0.0f;
+		impulse = 0.0f;
 	}
 	// Update is called once per frame
 	void Update()
 	{
-		
+		if (impulse != 0)
+		{
+			speed = impulse / mass;
+			//Debug.Break();
+			direction = collisionNormal;
+			
+
+			// velocity = velocity + (impulse / mass) * collisionNormal;
+		}
 		acceleration += (gravity + acceleration) * Time.deltaTime*1/5;
 		velocity = speed * direction + acceleration;
 		transform.position += velocity * Time.deltaTime;

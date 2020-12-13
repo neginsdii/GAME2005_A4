@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 30
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -266,7 +266,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 1
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!23 &526557354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -630,7 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 12
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -642,7 +647,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 0
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 10
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -843,7 +853,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 0
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 30
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -986,7 +1001,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 1
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!23 &1084247157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1097,7 +1117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 30
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -1109,7 +1129,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 1
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!23 &1097524062
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1393,7 +1418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectToPool: {fileID: 6224879848663143925, guid: 52f4e266e90013541908ffad6c684e6e, type: 3}
-  amountToPool: 10
+  amountToPool: 1
 --- !u!114 &1484508504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpawn: {fileID: 1818376027}
   bullet: {fileID: 0}
-  FireRate: 10
+  FireRate: 30
   bulletManager: {fileID: 607772646}
 --- !u!1 &1486599272
 GameObject:
@@ -1716,7 +1741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 30
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -1728,7 +1753,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 1
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!23 &1540088551
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1919,7 +1949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  mass: 0
+  mass: 30
   size: {x: 0, y: 0, z: 0}
   max: {x: 0, y: 0, z: 0}
   min: {x: 0, y: 0, z: 0}
@@ -1931,7 +1961,12 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  relativeVelocity: {x: 0, y: 0, z: 0}
   isPlane: 1
+  collisionNormal: {x: 0, y: 0, z: 0}
+  coefficientOfRestitution: 0
+  collisionRestitution: 0
+  impulse: 0
 --- !u!23 &2107933955
 MeshRenderer:
   m_ObjectHideFlags: 0

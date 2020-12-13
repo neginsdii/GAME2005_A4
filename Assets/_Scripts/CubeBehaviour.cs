@@ -20,8 +20,13 @@ public class CubeBehaviour : MonoBehaviour
     public MeshFilter meshFilter;
     public Bounds bounds;
     public Vector3 velocity;
+    public Vector3 relativeVelocity;
     private Vector3 acceleration;
     public bool isPlane;
+    public Vector3 collisionNormal;
+    public float coefficientOfRestitution;
+    public float collisionRestitution;
+    public float impulse;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +34,14 @@ public class CubeBehaviour : MonoBehaviour
         meshFilter = GetComponent<MeshFilter>();
         acceleration.Set(0.0f, 0.0f, 0.0f);
         velocity.Set(0.0f, 0.0f, 0.0f);
+        relativeVelocity.Set(0.0f, 0.0f, 0.0f);
         bounds = meshFilter.mesh.bounds;
         size = bounds.size;
         gravity.Set(0.0f, -9.8f, 0.0f);
+        collisionNormal.Set(0.0f, 0.0f, 0.0f);
+        coefficientOfRestitution = 0.2f;
+        collisionRestitution = 0.0f;
+        impulse = 0.0f;
     }
 
     // Update is called once per frame
@@ -39,6 +49,13 @@ public class CubeBehaviour : MonoBehaviour
     {
         if (!isPlane)
         {
+            if (impulse != 0)
+            {
+                speed = impulse / mass;
+                direction = collisionNormal;
+                // velocity = velocity + (impulse / mass) * collisionNormal;
+            }
+
             acceleration += (gravity + acceleration) * Time.deltaTime*1/10;
             velocity = speed * direction + acceleration;
             if(contacts.Count >0)

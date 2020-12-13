@@ -72,6 +72,7 @@ public class CollisionManager : MonoBehaviour
             {
                 a.contacts.Add(b);
                 a.isColliding = true;
+
             }
         }
         else
@@ -102,6 +103,15 @@ public class CollisionManager : MonoBehaviour
                 a.contacts.Add(b);
                 a.isColliding = true;
                 Debug.Log("collision ");
+                a.collisionNormal.x = (a.transform.position.x- x);
+                a.collisionNormal.y = (a.transform.position.x - y);
+                a.collisionNormal.z = (a.transform.position.x - z);
+                a.collisionNormal.Set(a.collisionNormal.x / a.collisionNormal.magnitude, a.collisionNormal.y / a.collisionNormal.magnitude, a.collisionNormal.z / a.collisionNormal.magnitude);
+
+                a.relativeVelocity.Set(b.velocity.x - a.velocity.x, b.velocity.y - a.velocity.y, b.velocity.z - a.velocity.z);
+                a.collisionRestitution = Mathf.Min(a.coefficientOfRestitution, b.coefficientOfRestitution);
+
+                a.impulse = (-(1 + a.collisionRestitution) * (Vector3.Dot(a.relativeVelocity, a.collisionNormal))) / ((1 / a.mass) + (1 / b.mass));
             }
         }
         else
@@ -110,6 +120,7 @@ public class CollisionManager : MonoBehaviour
             {
                 a.contacts.Remove(b);
                 a.isColliding = false;
+                a.impulse = 0.0f;
             }
         }
     }
@@ -129,6 +140,16 @@ public class CollisionManager : MonoBehaviour
             {
                 b.sp_contacts.Add(a);
                 b.isColliding = true;
+                b.collisionNormal.x=(x- a.transform.position.x);
+                b.collisionNormal.y = (y - a.transform.position.y);
+                b.collisionNormal.z = (z - a.transform.position.z);
+                b.collisionNormal.Set(b.collisionNormal.x / b.collisionNormal.magnitude, b.collisionNormal.y / b.collisionNormal.magnitude, b.collisionNormal.z / b.collisionNormal.magnitude);
+
+                b.relativeVelocity.Set(a.velocity.x - b.velocity.x, a.velocity.y - b.velocity.y, a.velocity.z - b.velocity.z);
+                b.collisionRestitution = Mathf.Min(b.coefficientOfRestitution, a.coefficientOfRestitution);
+
+                b.impulse = (-(1 + b.collisionRestitution) * (Vector3.Dot(b.relativeVelocity, b.collisionNormal))) / ((1 / a.mass) + (1 / b.mass));
+
             }
         }
         else
@@ -137,6 +158,7 @@ public class CollisionManager : MonoBehaviour
             {
                 b.sp_contacts.Remove(a);
                 b.isColliding = false;
+                b.impulse = 0.0f;
             }
         }
     }
@@ -153,6 +175,16 @@ public class CollisionManager : MonoBehaviour
             {
                 a.sp_contacts.Add(b);
                 a.isColliding = true;
+                // calculate the collision vector
+                a.collisionNormal.x = (a.transform.position.x - b.transform.position.x);
+                a.collisionNormal.y = (a.transform.position.y - b.transform.position.y);
+                a.collisionNormal.z = (a.transform.position.z - b.transform.position.z);
+                // normalize the collision vector
+                a.collisionNormal.Set(a.collisionNormal.x/a.collisionNormal.magnitude, a.collisionNormal.y / a.collisionNormal.magnitude, a.collisionNormal.z / a.collisionNormal.magnitude);
+                a.relativeVelocity.Set(b.velocity.x-a.velocity.x , b.velocity.y - a.velocity.y, b.velocity.z - a.velocity.z);
+                a.collisionRestitution = Mathf.Min(a.coefficientOfRestitution, b.coefficientOfRestitution);
+                // calculate the impulse
+                a.impulse = (-(1 + a.collisionRestitution) * (Vector3.Dot(a.relativeVelocity,a.collisionNormal))) / ( (1/a.mass) +(1/b.mass) );
             }
         }
         else
@@ -161,6 +193,7 @@ public class CollisionManager : MonoBehaviour
             {
                 a.sp_contacts.Remove(b);
                 a.isColliding = false;
+                a.impulse = 0.0f;
             }
 
         }
