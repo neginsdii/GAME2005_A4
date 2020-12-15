@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Color = UnityEngine.Color;
@@ -27,7 +27,12 @@ public class CubeBehaviour : MonoBehaviour
     public float coefficientOfRestitution;
     public float collisionRestitution;
     public float impulse;
-
+    public bool showGizmos;
+    public float coFriction;
+    public Vector3 t;
+    public float jt;
+    public bool isGround;
+    public bool isBottom; // bottom colliding
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +47,7 @@ public class CubeBehaviour : MonoBehaviour
         coefficientOfRestitution = 0.2f;
         collisionRestitution = 0.0f;
         impulse = 0.0f;
+        coFriction = 0.9f;
     }
 
     // Update is called once per frame
@@ -49,17 +55,19 @@ public class CubeBehaviour : MonoBehaviour
     {
         if (!isPlane)
         {
-            if (impulse != 0)
-            {
-                speed = impulse / mass;
-                direction = collisionNormal;
-                // velocity = velocity + (impulse / mass) * collisionNormal;
-            }
+            //if (impulse != 0)
+            //{
+            //    speed = jt / mass;
+            //    direction = collisionNormal;
+            //    // velocity = velocity + (impulse / mass) * collisionNormal;
+            //}
 
             acceleration += (gravity + acceleration) * Time.deltaTime*1/10;
             velocity = speed * direction + acceleration;
-            if(contacts.Count >0)
-            { velocity.Set(0.0f, 0.0f, 0.0f); }
+            //if(contacts.Count >0)
+            //{ velocity.Set(0.0f, 0.0f, 0.0f); }
+            if (isBottom)
+                velocity.Set(velocity.x, 0.0f, velocity.z);
             transform.position += velocity * Time.deltaTime;
         }
         max = Vector3.Scale(bounds.max, transform.localScale) + transform.position;
@@ -69,7 +77,7 @@ public class CubeBehaviour : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-
-        Gizmos.DrawWireCube(transform.position, Vector3.Scale(new Vector3(1.0f, 1.0f, 1.0f), transform.localScale));
+        if (showGizmos)
+            Gizmos.DrawWireCube(transform.position, Vector3.Scale(new Vector3(1.0f, 1.0f, 1.0f), transform.localScale));
     }
 }

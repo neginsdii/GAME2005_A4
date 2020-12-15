@@ -30,11 +30,11 @@ public class PlayerBehavior : MonoBehaviour
     private void _Fire()
     {
         
-        if (Input.GetAxisRaw("Fire1") > 0.0f)
+        if (Input.GetMouseButtonDown(0))
         {
 
-            if (Time.frameCount % FireRate == 0)
-            {
+          //  if (Time.frameCount % FireRate == 0)
+          //  {
              
                 GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject();
                 if (bullet != null)
@@ -46,7 +46,7 @@ public class PlayerBehavior : MonoBehaviour
                     bullet.SetActive(true);
                 }
               
-            }
+         //   }
         }
     }
     
